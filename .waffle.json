@@ -1,24 +1,33 @@
 {
+  # Path or version of the Solidity compiler executable.
   "compilerVersion": "./node_modules/solc",
+  # Specifies that all contracts should be compiled.
   "outputType": "all",
   "compilerOptions": {
     "outputSelection": {
+      # Select all contracts and files
       "*": {
         "*": [
+          # Essential outputs for deployment and verification
           "evm.bytecode.object",
           "evm.deployedBytecode.object",
           "abi",
+          "metadata",
+          # Source maps and other outputs primarily needed for debugging/detailed verification
           "evm.bytecode.sourceMap",
-          "evm.deployedBytecode.sourceMap",
-          "metadata"
+          "evm.deployedBytecode.sourceMap"
         ],
+        # Include AST (Abstract Syntax Tree) for analysis tools
         "": ["ast"]
       }
     },
+    # Set the target EVM version for compatibility
     "evmVersion": "istanbul",
     "optimizer": {
       "enabled": true,
-      "runs": 999999
+      # OPTIMIZATION: Reduced runs from 999,999 for faster development cycles.
+      # High values (e.g., 999,999) are typically reserved only for final Mainnet deployment.
+      "runs": 200
     }
   }
 }
